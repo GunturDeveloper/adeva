@@ -1,132 +1,165 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Valentine 2026</title>
+    <title>Happy Valentine Deva ❤️</title>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        body{
+            margin:0;
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background: linear-gradient(135deg,#ff9a9e,#fecfef);
+            font-family: 'Poppins', sans-serif;
+            overflow:hidden;
+        }
 
-  <style>
-    body {
-      background: linear-gradient(135deg, #ff9ec1 0%, #ff5e92 100%);
-      background-image: 
-        linear-gradient(135deg, #ff9ec1 0%, #ff5e92 100%),
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Ccircle cx='100' cy='100' r='100' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
-      background-blend-mode: overlay;
-      background-attachment: fixed;
-    }
+        .card{
+            background:white;
+            padding:40px;
+            border-radius:25px;
+            text-align:center;
+            box-shadow:0 10px 25px rgba(0,0,0,0.2);
+            animation: fade 2s ease;
+            position:relative;
+        }
 
-    .glass {
-      background: rgba(255, 255, 255, 0.18);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-    }
+        h1{
+            color:#ff4d6d;
+            font-size:40px;
+        }
 
-    #valentineCard {
-      opacity: 0;
-      transform: scale(0.9);
-      transition: all 1s ease;
-    }
+        p{
+            font-size:20px;
+        }
 
-    #valentineCard.show {
-      opacity: 1;
-      transform: scale(1);
-    }
+        .btn{
+            margin:10px;
+            padding:12px 25px;
+            border:none;
+            border-radius:20px;
+            background:#ff4d6d;
+            color:white;
+            font-size:16px;
+            cursor:pointer;
+        }
 
-    @keyframes float {
-      0%   { transform: translateY(110vh) rotate(0deg); }
-      100% { transform: translateY(-30vh) rotate(720deg); }
-    }
+        #noBtn{
+            background:#999;
+            position:absolute;
+        }
 
-    .heart-float {
-      position: absolute;
-      pointer-events: none;
-      animation: float linear forwards;
-    }
-  </style>
+        /* Popup */
+        .popup{
+            position:fixed;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%) scale(0.8);
+            background:white;
+            padding:40px;
+            border-radius:25px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.3);
+            text-align:center;
+            display:none;
+            animation: pop 0.4s ease forwards;
+            z-index:1000;
+        }
+
+        @keyframes pop{
+            to{
+                transform:translate(-50%,-50%) scale(1);
+                opacity:1;
+            }
+        }
+
+        .overlay{
+            position:fixed;
+            width:100%;
+            height:100%;
+            background:rgba(0,0,0,0.4);
+            display:none;
+            z-index:999;
+        }
+
+        .heart{
+            position:absolute;
+            color:red;
+            font-size:20px;
+            animation: fall 5s linear infinite;
+        }
+
+        @keyframes fade{
+            from{opacity:0; transform:scale(0.7);}
+            to{opacity:1; transform:scale(1);}
+        }
+
+        @keyframes fall{
+            0%{transform:translateY(-100vh);}
+            100%{transform:translateY(100vh);}
+        }
+    </style>
 </head>
 
-<body class="min-h-screen flex items-center justify-center overflow-hidden relative">
+<body>
 
-  <div id="hearts-container" class="fixed inset-0 pointer-events-none z-0"></div>
+<div class="card">
+    <h1>Happy Valentine Deva ❤️</h1>
 
-  <!-- Dialog Countdown -->
-  <div id="dialogBox" class="glass rounded-3xl p-10 text-center w-96 relative z-10">
-    <i class="ph-fill ph-heart text-rose-400 text-6xl mb-6 animate-pulse"></i>
-    <h1 class="text-2xl font-bold mb-4 text-rose-700">Hai Deva Jana Cinta Parasuwi 💕</h1>
-    <p class="text-lg text-gray-800 mb-6 leading-relaxed">
-      Pesan spesial Valentine akan terbukaa sebentar lagi...
+    <p>
+        Dari sekian banyak orang di dunia,<br>
+        kamu tetap yang paling spesial.<br>
+        Terima kasih sudah hadir di hidupku ✨
     </p>
-    <p id="countdown" class="text-rose-700 font-bold text-2xl">
-      10
-    </p>
-  </div>
 
-  <!-- Valentine Card -->
-  <div id="valentineCard" class="absolute inset-0 flex items-center justify-center p-6 z-20">
-    <div class="glass rounded-3xl p-12 max-w-lg text-center shadow-2xl">
-      <i class="ph-fill ph-heart text-rose-500 text-7xl mb-6 animate-bounce"></i>
-      <h2 class="text-3xl font-bold mb-6 text-rose-600">
-        Selamat Hari Valentine 2026
-      </h2>
-      <p class="text-gray-800 text-lg leading-relaxed mb-8">
-        Buat Deva Jana Cinta Parasuwi yang palinggg spesial,<br><br>
-       semoga harimu penuh senyuman manis, dan cinta yang tulus yaaaa,  
-        makasih yaaa udah jadi bagian terindah di hidupkuuu,  
-        tahun 2026 ini aku pengen bikin lebih banyak kenangan indah bareng kamuuu.. 
-      </p>
-      <p class="text-xl italic text-rose-700 font-medium">
-        From Your Earlyy
-      </p>
-    </div>
-  </div>
+    <button class="btn" onclick="accept()">Terima 💌</button>
+    <button class="btn" id="noBtn" onmouseover="moveButton()">Tidak 😝</button>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="popup" id="popup">
+    <h2>YEEAAAY 💖</h2>
+    <p>Kamu resmi jadi pasangan paling gemas sedunia 😆✨</p>
+    <button class="btn" onclick="closePopup()">Tutup</button>
+</div>
 
 <script>
-  const dialogBox = document.getElementById("dialogBox");
-  const valentineCard = document.getElementById("valentineCard");
-  const heartsContainer = document.getElementById("hearts-container");
-  const countdownText = document.getElementById("countdown");
-
-  // Floating hearts
-  function createHeart() {
-    const heart = document.createElement("div");
-    heart.className = "heart-float";
-    heart.innerHTML = Math.random() > 0.5 ? "❤️" : "💗";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (Math.random() * 1.5 + 1) + "rem";
-    heart.style.animationDuration = (Math.random() * 4 + 6) + "s";
-    heartsContainer.appendChild(heart);
-    setTimeout(() => heart.remove(), 10000);
-  }
-
-  setInterval(createHeart, 400);
-
-  // TIMER 10 DETIK
-  let timeLeft = 10;
-
-  const timer = setInterval(() => {
-    timeLeft--;
-    countdownText.textContent = timeLeft;
-
-    if (timeLeft <= 0) {
-      clearInterval(timer);
-
-      dialogBox.style.opacity = "0";
-      dialogBox.style.transform = "scale(0.85) translateY(30px)";
-
-      setTimeout(() => {
-        dialogBox.classList.add("hidden");
-        valentineCard.classList.add("show");
-
-        for (let i = 0; i < 20; i++) {
-          setTimeout(createHeart, i * 150);
-        }
-      }, 800);
+    function accept(){
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("popup").style.display = "block";
     }
-  }, 1000);
+
+    function closePopup(){
+        document.getElementById("overlay").style.display = "none";
+        document.getElementById("popup").style.display = "none";
+    }
+
+    function moveButton(){
+        const btn = document.getElementById("noBtn");
+        const card = document.querySelector(".card");
+
+        const maxX = card.clientWidth - btn.offsetWidth;
+        const maxY = card.clientHeight - btn.offsetHeight;
+
+        btn.style.position = "absolute";
+        btn.style.left = Math.random() * maxX + "px";
+        btn.style.top = Math.random() * maxY + "px";
+    }
+
+    function createHeart(){
+        const heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.className = "heart";
+        heart.style.left = Math.random()*100 + "vw";
+        heart.style.fontSize = (15+Math.random()*20) + "px";
+        heart.style.animationDuration = (3+Math.random()*5) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(()=> heart.remove(),5000);
+    }
+
+    setInterval(createHeart,300);
 </script>
 
 </body>
